@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { apiUrls } from '@/lib/apiUrls'
 import url from '@/constants/url'
 import { createClient } from '@/utils/supabase/client'
+import { login } from './actions'
 
 const initialState = { loading: false, email: '', success: false, error: '' }
 
@@ -35,16 +36,7 @@ export default function Form() {
     setState((prev) => ({ ...prev, loading: true, error: '', success: false }))
 
     try {
-      const res = await fetch(apiUrls.auth.signin, {
-        method: 'POST',
-        body: JSON.stringify({ email: state.email }),
-        headers: { 'Content-Type': 'application/json' },
-      })
-
-      if (!res.ok) {
-        const error = await res.json()
-        throw new Error(error.message)
-      }
+      await login(state.email)
       setState((prev) => ({ ...prev, success: true, loading: false, email: '' }))
     } catch (error: any) {
       setState((prev) => ({ ...prev, error: error.message, loading: false }))
