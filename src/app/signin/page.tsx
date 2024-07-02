@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import logo from '../../../public/icons/logo.svg'
-// import SignInForm from './form'
+import SignInForm from './form'
 
 export default function SignIn() {
   return (
@@ -21,7 +21,7 @@ export default function SignIn() {
       <p className='mb-6 mt-3 text-center text-sm font-medium text-zinc-600'>
         Use your email address to securely sign in.
       </p>
-      {/* <SignInForm /> */}
+      <SignInForm />
     </div>
   )
 }

@@ -4,20 +4,19 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-
 import CircleLoader from '@/components/loader/circle'
 import { Button } from '@/components/ui/button'
 
 import { apiUrls } from '@/lib/apiUrls'
 import url from '@/constants/url'
+import { createClient } from '@/utils/supabase/client'
 
 const initialState = { loading: false, email: '', success: false, error: '' }
 
 export default function Form() {
   const [state, setState] = useState(initialState)
   const inputElement = useRef<HTMLInputElement>(null)
-  const supabase = createClientComponentClient()
+  const supabase = createClient()
   const router = useRouter()
 
   useEffect(() => {
