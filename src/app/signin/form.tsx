@@ -34,7 +34,6 @@ export default function Form() {
 
   const handleSignIn = async () => {
     setState((prev) => ({ ...prev, loading: true, error: '', success: false }))
-
     try {
       await login(state.email)
       setState((prev) => ({ ...prev, success: true, loading: false, email: '' }))

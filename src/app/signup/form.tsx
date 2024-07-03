@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { apiUrls } from '@/lib/apiUrls'
 
 import url from '@/constants/url'
+import { signup } from './actions'
 
 const initialState = { loading: false, email: '', success: false, error: '' }
 
@@ -22,18 +23,8 @@ export default function Form() {
 
   const handleSignup = async () => {
     setState((prev) => ({ ...prev, loading: true, error: '', success: false }))
-
     try {
-      const res = await fetch(apiUrls.auth.signup, {
-        method: 'POST',
-        body: JSON.stringify({ email: state.email }),
-        headers: { 'Content-Type': 'application/json' },
-      })
-
-      if (!res.ok) {
-        const error = await res.json()
-        throw new Error(error.message)
-      }
+      await signup(state.email)
       setState((prev) => ({ ...prev, success: true, loading: false, email: '' }))
     } catch (error: any) {
       setState((prev) => ({ ...prev, error: error.message, loading: false }))
