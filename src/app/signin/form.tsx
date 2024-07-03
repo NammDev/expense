@@ -74,7 +74,7 @@ export default function Form() {
       <p className='text-center text-sm font-medium text-gray-700'>
         Don{"'"}t have an account?{' '}
         <Link
-          href={url.app.signup}
+          href='/signup'
           className='border-b-[1px] border-gray-700 pb-[1px] font-bold hover:border-gray-500 hover:text-gray-600'
         >
           Sign up

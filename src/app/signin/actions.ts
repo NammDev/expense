@@ -2,11 +2,12 @@
 
 import { prisma } from '@/lib/db'
 import messages, { emails } from '@/constants/messages'
-import { createClient } from '@/utils/supabase/server'
 import { getRedirectUrl } from '@/lib/utils'
 import resend from '@/lib/email'
 import WelcomeEmail from '@/components/emails/welcome'
 import SignInEmail from '@/components/emails/signin'
+import { Database } from '@/lib/database.types'
+import { createClient } from '@supabase/supabase-js'
 
 type UserData = {
   email: string
@@ -14,7 +15,11 @@ type UserData = {
   new_signup_email: boolean
 }
 
-const supabase = createClient()
+const supabaseAdmin = createClient<Database>(
+  process.env.NEXT_PUBLIC_SUPABASE_URL ?? '',
+  process.env.SUPABASE_SERVICE_ROLE_KEY ?? '',
+  { auth: { persistSession: false } }
+)
 
 export async function login(email: string) {
   const user = (await prisma.users.findFirst({
@@ -24,7 +29,7 @@ export async function login(email: string) {
 
   if (user && user.id) {
     try {
-      const { data, error } = await supabase.auth.admin.generateLink({
+      const { data, error } = await supabaseAdmin.auth.admin.generateLink({
         type: 'magiclink',
         email,
         options: { redirectTo: getRedirectUrl() },

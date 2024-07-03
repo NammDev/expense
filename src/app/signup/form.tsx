@@ -1,14 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-
 import { useEffect, useRef, useState } from 'react'
-
 import CircleLoader from '@/components/loader/circle'
 import { Button } from '@/components/ui/button'
-import { apiUrls } from '@/lib/apiUrls'
-
-import url from '@/constants/url'
 import { signup } from './actions'
 
 const initialState = { loading: false, email: '', success: false, error: '' }
@@ -63,7 +58,7 @@ export default function Form() {
       <p className='text-center text-sm font-medium text-zinc-700'>
         Already registered?{' '}
         <Link
-          href={url.app.signin}
+          href={'/signin'}
           className='border-b-[1px] border-zinc-700 pb-[1px] font-bold hover:border-zinc-500 hover:text-zinc-600'
         >
           Sign in

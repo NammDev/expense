@@ -13,9 +13,9 @@ const url = {
   api: `${isProduction ? 'https://app.' : 'http://app.'}${home}`,
   serverApi: `${isProduction ? 'https://' : 'http://'}${home}`,
   app: {
-    signin: `//app.${home}/signin`,
-    signup: `//app.${home}/signup`,
-    overview: `//app.${home}`,
+    signin: `${home}/signin`,
+    signup: `${home}/signup`,
+    overview: `${home}/overview`,
   },
   twitter: 'https://x.com/namdeveloper_ca',
   github: 'https://github.com/NammDev/expense',

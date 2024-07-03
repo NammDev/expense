@@ -10,7 +10,6 @@ export function cn(...inputs: ClassValue[]) {
 
 export const getRedirectUrl = () => {
   let url = process?.env?.NEXT_PUBLIC_SITE_URL ?? urls.app.overview
-  url = isProduction ? `https:${url}` : `http://app.${url}`
-  url = url.charAt(url.length - 1) === '/' ? url : `${url}/`
+  url = isProduction ? `https:${url}` : `http://${url}`
   return url
 }
