@@ -54,7 +54,6 @@ export async function login(email: string) {
           to: email,
           react: SignInEmail({ action_link }),
         })
-        console.log('Email sent')
       } catch (err: any) {
         throw new Error(err)
       }

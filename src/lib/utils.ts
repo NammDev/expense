@@ -9,7 +9,5 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const getRedirectUrl = () => {
-  let url = process?.env?.NEXT_PUBLIC_SITE_URL ?? urls.app.overview
-  url = isProduction ? `https:${url}` : `http://${url}`
-  return url
+  return 'http://localhost:3000/dashboard'
 }

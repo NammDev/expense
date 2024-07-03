@@ -17,7 +17,7 @@ export default function Home() {
             <span className='font-black tracking-[-0.03em] text-gray-900'>expense.namk.dev</span>
           </Link>
           <Link
-            href={url.app.signin}
+            href={'/signin'}
             className='leading-2 mr-4 inline-flex h-[34px] items-center overflow-hidden rounded-full bg-gray-900 px-4 py-1 text-sm font-medium text-white transition hover:bg-primary/90'
           >
             Sign in
@@ -59,7 +59,7 @@ export default function Home() {
           </p>
           <div className='mt-10 flex justify-center'>
             <Link
-              href={url.app.signup}
+              href={'/signup'}
               className='inline-flex h-[34px] items-center justify-center rounded-full bg-gray-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-primary/90 hover:shadow'
             >
               Try it for Free
