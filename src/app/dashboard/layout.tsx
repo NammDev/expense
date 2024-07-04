@@ -3,8 +3,7 @@ import { cookies } from 'next/headers'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import React from 'react'
 import { Database } from '@/lib/database.types'
-import { AuthProvider } from './auth-provider'
-import { prisma } from '@/lib/db'
+import { AuthProvider } from '../../components/context/auth-provider'
 import { getUser } from '@/lib/actions/users'
 
 const inter = Inter({ subsets: ['latin'] })

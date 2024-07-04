@@ -9,7 +9,7 @@ export async function middleware(req: NextRequest) {
   const { data } = await supabase.auth.getSession()
   const { session } = data
 
-  if (url.pathname === '/signin' || url.pathname === '/signup' || url.pathname === '/') {
+  if (url.pathname === '/signin' || url.pathname === '/signup') {
     if (session) {
       url.pathname = '/dashboard'
       return NextResponse.redirect(url)

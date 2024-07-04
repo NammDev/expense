@@ -1,31 +1,10 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
-
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { SWRConfig } from 'swr'
-
 import fetcher from '@/lib/fetcher'
-
-interface User {
-  currency: string
-  locale: string
-  billing_start_date: string
-  trial_start_date: string
-  order_status: string
-  usage: number
-  email: string
-  plan_status: string
-  new_signup_email: boolean
-  basic_usage_limit_email: boolean
-  premium_plan_expired_email: boolean
-  premium_usage_limit_email: boolean
-  monthly_email_report: boolean
-  isPremium: boolean
-  isPremiumPlanEnded: boolean
-}
 
 interface Session {}
 
@@ -39,7 +18,6 @@ export const AuthProvider = (props: any) => {
   const { accessToken, user, children, ...others } = props
 
   useEffect(() => {
-    console.log('test')
     const searchParams = new URLSearchParams(window?.location?.hash ?? '')
     const access_token = searchParams.get('#access_token')
     const refresh_token = searchParams.get('refresh_token')
@@ -55,7 +33,6 @@ export const AuthProvider = (props: any) => {
   }, [])
 
   useEffect(() => {
-    console.log('hello')
     async function getActiveSession() {
       const {
         data: { session: activeSession },
