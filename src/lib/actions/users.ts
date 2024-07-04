@@ -3,7 +3,7 @@
 import { checkAuth } from './../auth'
 import { prisma } from '../db'
 
-export async function getUser(cookies: any) {
+export async function getUser() {
   return await checkAuth(async (user: any) => {
     try {
       const data = await prisma.users.findUnique({

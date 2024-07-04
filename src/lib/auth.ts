@@ -1,5 +1,8 @@
+'use server'
+
 import { prisma } from './db'
-import { createClient } from '@/utils/supabase/server'
+import { createServerActionClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
 
 type UserData = {
   email: string
@@ -9,7 +12,7 @@ type UserData = {
 }
 
 export const checkAuth = async (callback: Function, isGetMethod = true) => {
-  const supabase = createClient()
+  const supabase = createServerActionClient({ cookies })
   const { data } = await supabase.auth.getSession()
   const { session } = data
   if (session && session.user) {

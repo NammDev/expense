@@ -29,13 +29,13 @@ export default async function Layout({ children }: any) {
   const {
     data: { session },
   } = await supabase.auth.getSession()
-  const user = await getUser(cookies())
+  const user = await getUser()
 
   return (
     <>
       <html lang='en' suppressHydrationWarning>
         <body className={`${inter.className} flex h-full flex-col text-gray-600 antialiased`}>
-          <AuthProvider accessToken={session?.access_token || null}>
+          <AuthProvider user={user} accessToken={session?.access_token || null}>
             <main className='relative flex min-w-full min-h-full bg-background'>
               <div className='h-full w-full sm:ml-[64px]'>
                 <div className='flex flex-col w-full h-full max-sm:ml-0'>{children}</div>
