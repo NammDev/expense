@@ -5,6 +5,10 @@ import React from 'react'
 import { Database } from '@/lib/database.types'
 import { AuthProvider } from '../../components/context/auth-provider'
 import { getUser } from '@/lib/actions/users'
+import { Providers } from '../../components/context/providers'
+import { Toaster } from '@/components/ui/sonner'
+import NextTopLoader from 'nextjs-toploader'
+import Sidebar from '@/components/sidebar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -31,18 +35,21 @@ export default async function Layout({ children }: any) {
   const user = await getUser()
 
   return (
-    <>
-      <html lang='en' suppressHydrationWarning>
-        <body className={`${inter.className} flex h-full flex-col text-gray-600 antialiased`}>
-          <AuthProvider user={user} accessToken={session?.access_token || null}>
+    <html lang='en' suppressHydrationWarning>
+      <body className={`${inter.className} flex h-full flex-col text-gray-600 antialiased`}>
+        <AuthProvider user={user} accessToken={session?.access_token || null}>
+          <Providers>
             <main className='relative flex min-w-full min-h-full bg-background'>
+              <Sidebar />
               <div className='h-full w-full sm:ml-[64px]'>
                 <div className='flex flex-col w-full h-full max-sm:ml-0'>{children}</div>
               </div>
             </main>
-          </AuthProvider>
-        </body>
-      </html>
-    </>
+          </Providers>
+        </AuthProvider>
+        <NextTopLoader color='#0076ff' height={2} showSpinner={false} />
+        <Toaster closeButton position='top-right' theme='system' visibleToasts={3} richColors />
+      </body>
+    </html>
   )
 }
